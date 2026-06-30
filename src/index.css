@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-light-border: var(--primary-light-border);
+  --color-secondary: var(--secondary);
+  --color-secondary-dark: var(--secondary-dark);
+  --color-bg-app: var(--bg-app);
+}
+
+:root {
+  /* Rose Theme (Default) */
+  --primary: #c24a72;
+  --primary-light: #eddff5;
+  --primary-dark: #903b5c;
+  --primary-hover: #a83d60;
+  --primary-light-border: #d8c5e3;
+  --secondary: #8a6b96;
+  --secondary-dark: #6a3b79;
+  --bg-app: #fdf6f0;
+}
+
+[data-theme="teal"] {
+  --primary: #0d9488;
+  --primary-light: #ccfbf1;
+  --primary-dark: #0f766e;
+  --primary-hover: #115e59;
+  --primary-light-border: #99f6e4;
+  --secondary: #0891b2;
+  --secondary-dark: #155e75;
+  --bg-app: #f0fdfa;
+}
+
+[data-theme="dark"] {
+  /* Dark Theme */
+  --primary: #f43f5e;
+  --primary-light: #2a1018;
+  --primary-dark: #be123c;
+  --primary-hover: #e11d48;
+  --primary-light-border: #5a2230;
+  --secondary: #a78bfa;
+  --secondary-dark: #7c3aed;
+  --bg-app: #0b1220;
+}
+
+[data-theme="dark"] body {
+  background-color: var(--bg-app);
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .theme-scope {
+  background-color: var(--bg-app) !important;
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .theme-scope .bg-white,
+[data-theme="dark"] .theme-scope .bg-stone-50,
+[data-theme="dark"] .theme-scope .bg-stone-100,
+[data-theme="dark"] .theme-scope .bg-stone-200,
+[data-theme="dark"] .theme-scope .bg-stone-300 {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .theme-scope .text-stone-800,
+[data-theme="dark"] .theme-scope .text-stone-900,
+[data-theme="dark"] .theme-scope .text-stone-700 {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .theme-scope .text-stone-500,
+[data-theme="dark"] .theme-scope .text-stone-600,
+[data-theme="dark"] .theme-scope .text-stone-400 {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .theme-scope .border-stone-100,
+[data-theme="dark"] .theme-scope .border-stone-200,
+[data-theme="dark"] .theme-scope .border-stone-300,
+[data-theme="dark"] .theme-scope .border-white\/20,
+[data-theme="dark"] .theme-scope .border-white\/40 {
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .theme-scope .bg-white\/95,
+[data-theme="dark"] .theme-scope .bg-white\/80,
+[data-theme="dark"] .theme-scope .bg-white\/70,
+[data-theme="dark"] .theme-scope .bg-white\/50,
+[data-theme="dark"] .theme-scope .bg-white\/40,
+[data-theme="dark"] .theme-scope .bg-stone-50\/80,
+[data-theme="dark"] .theme-scope .bg-stone-50\/70,
+[data-theme="dark"] .theme-scope .bg-stone-50\/60,
+[data-theme="dark"] .theme-scope .bg-stone-50\/50,
+[data-theme="dark"] .theme-scope .backdrop-blur-xl,
+[data-theme="dark"] .theme-scope .backdrop-blur-md {
+  background-color: rgba(30, 41, 59, 0.95) !important;
+}
+
+[data-theme="dark"] .theme-scope .shadow-stone-200\/40,
+[data-theme="dark"] .theme-scope .shadow-stone-200\/50,
+[data-theme="dark"] .theme-scope .shadow-slate-200\/50,
+[data-theme="dark"] .theme-scope .shadow-rose-100\/50,
+[data-theme="dark"] .theme-scope .shadow-rose-200\/50 {
+  --tw-shadow-color: rgba(2, 6, 23, 0.45) !important;
+}
+
+[data-theme="dark"] .theme-scope .bg-stone-900 {
+  background-color: #111827 !important;
+}
+
+[data-theme="dark"] .theme-scope .bg-\[\#fff7fa\],
+[data-theme="dark"] .theme-scope .bg-\[\#fffaf7\] {
+  background-color: #1e293b !important;
+}
+
+[data-theme="dark"] .theme-scope .border-rose-100,
+[data-theme="dark"] .theme-scope .border-rose-200,
+[data-theme="dark"] .theme-scope .border-amber-100,
+[data-theme="dark"] .theme-scope .border-amber-200,
+[data-theme="dark"] .theme-scope .border-emerald-100,
+[data-theme="dark"] .theme-scope .border-emerald-200,
+[data-theme="dark"] .theme-scope .border-\[\#f1e4da\] {
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .theme-scope .bg-gradient-to-b.from-white.to-\[\#fffaf7\],
+[data-theme="dark"] .theme-scope .bg-gradient-to-b.from-\[\#fff7fa\].to-white,
+[data-theme="dark"] .theme-scope .bg-\[\#fffaf7\] {
+  background-image: none !important;
+  background-color: #1e293b !important;
+}
+
+[data-theme="teal"] .theme-scope .shadow-rose-100\/60,
+[data-theme="teal"] .theme-scope .shadow-rose-100\/50,
+[data-theme="teal"] .theme-scope .shadow-rose-200\/50,
+[data-theme="teal"] .theme-scope .shadow-rose-500\/30 {
+  --tw-shadow-color: rgba(13, 148, 136, 0.18) !important;
+}
+
+[data-theme="dark"] .theme-scope input,
+[data-theme="dark"] .theme-scope textarea,
+[data-theme="dark"] .theme-scope select {
+  color-scheme: dark;
+}
+
+[data-theme="dark"] .theme-scope .text-white,
+[data-theme="dark"] .theme-scope .text-white\/90,
+[data-theme="dark"] .theme-scope .text-white\/70,
+[data-theme="dark"] .theme-scope .text-white\/50 {
+  color: #f8fafc !important;
+}
+
+/* Theme-locked sections (onboarding/auth) should ignore theme changes */
+.theme-locked {
+  --primary: #c24a72;
+  --primary-light: #eddff5;
+  --primary-dark: #903b5c;
+  --primary-hover: #a83d60;
+  --primary-light-border: #d8c5e3;
+  --secondary: #8a6b96;
+  --secondary-dark: #6a3b79;
+  --bg-app: #fdf6f0;
+}

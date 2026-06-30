@@ -1,0 +1,5 @@
+{
+    "chatgpt.openOnStartup": false,
+    "git.ignoreLimitWarning": true,
+    "snyk.advanced.autoSelectOrganization": true
+}

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cycle Track AI - Audit Log</title>
+    <style>
+      :root { color-scheme: light; }
+      body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; color: #111827; }
+      h1 { margin: 0 0 8px; font-size: 22px; }
+      .meta { color: #6b7280; margin: 0 0 18px; font-size: 13px; }
+      h2 { margin: 18px 0 8px; font-size: 16px; }
+      code { background: #f3f4f6; padding: 1px 6px; border-radius: 6px; }
+      li { margin: 6px 0; }
+      .ok { color: #065f46; }
+      .warn { color: #92400e; }
+      .fixed { color: #1d4ed8; }
+      .box { border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px 14px; background: #fff; }
+    </style>
+  </head>
+  <body>
+    <h1>Project Audit Log</h1>
+    <p class="meta">Generated: 2026-03-11</p>
+
+    <div class="box">
+      <h2>Checks Run</h2>
+      <ul>
+        <li>Reviewed all repository source/config files under <code>src/</code> plus root configs.</li>
+        <li class="ok">Translation-key scan: all <code>t('...')</code> usages exist in <code>translations.en</code>.</li>
+        <li class="ok">JSON parse check: <code>package.json</code>, <code>tsconfig.json</code>, <code>metadata.json</code>.</li>
+      </ul>
+    </div>
+
+    <h2>Errors / Risks Found</h2>
+    <ol>
+      <li class="warn">
+        Dependency install/typecheck could not be verified in this environment:
+        <code>npm ci</code> fails with registry/network <code>EACCES</code>, so <code>tsc --noEmit</code> could not be executed.
+      </li>
+      <li class="warn">
+        After a successful <code>npm install</code>, Vite/TSX may still fail with <code>spawn EPERM</code> on Windows when esbuild tries to start its background service (uses redirected stdio pipes).
+        Quick repro: <code>node -e "require('esbuild').transformSync('let x: number = 1',{loader:'ts'})"</code>.
+        This is typically caused by OS/endpoint security restrictions or Node/Windows compatibility, not TypeScript source errors.
+      </li>
+      <li class="warn">
+        If your editor shows lots of “Cannot find module …” errors, that’s usually because <code>node_modules</code> is missing/incomplete due to the failed install above (not because the source files are still broken).
+      </li>
+      <li class="fixed">
+        <code>package.json</code> had <code>start: node server.ts</code>, which would fail because Node can’t execute TypeScript directly. Fixed to <code>tsx server.ts</code>.
+      </li>
+      <li class="fixed">
+        Potential runtime crash when <code>GEMINI_API_KEY</code> is missing: the app created <code>GoogleGenAI</code> unconditionally in
+        <code>src/ChatView.tsx</code> and <code>src/services/geminiService.ts</code>. Added guards; Chat now shows a clear message instead.
+      </li>
+      <li class="fixed">
+        Potential runtime crash if the chat client wasn’t initialized before sending a message: <code>src/ChatView.tsx</code> now ensures a chat session exists before calling <code>sendMessage</code>.
+      </li>
+      <li class="fixed">
+        Potential crash on corrupt localStorage JSON: <code>src/AppContext.tsx</code> parsed <code>user</code> without a try/catch. Added safe parsing.
+      </li>
+      <li class="fixed">
+        Encoding/mojibake in <code>vite.config.ts</code> comment. Rewrote the file with a clean em dash.
+      </li>
+      <li class="fixed">
+        Windows incompatibility: <code>clean</code> script used <code>rm -rf</code>. Replaced with a cross-platform Node <code>rmSync</code>.
+      </li>
+    </ol>
+
+    <h2>Files Updated</h2>
+    <ul>
+      <li><code>package.json</code></li>
+      <li><code>vite.config.ts</code></li>
+      <li><code>src/AppContext.tsx</code></li>
+      <li><code>src/ChatView.tsx</code></li>
+      <li><code>src/services/geminiService.ts</code></li>
+      <li><code>src/translations.ts</code> (added <code>missingApiKey</code> to English + Nepali)</li>
+      <li><code>log.html</code></li>
+    </ul>
+  </body>
+</html>
